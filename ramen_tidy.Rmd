@@ -1,0 +1,57 @@
+---
+title: 'Tidy Tuesday: Ramen'
+output:
+  html_document:
+    df_print: paged
+---
+
+Import the data
+
+```{r}
+library(dplyr)
+library(leaflet)
+ramen_ratings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-04/ramen_ratings.csv")
+str(ramen_ratings)
+```
+Filter to 4 stars and above
+
+```{r}
+ramen_stars=ramen_ratings%>%
+  group_by(country,brand,style)%>%
+  filter(stars>=4)%>%
+  summarise(n=n())
+```
+
+Choose top 5 countries to plot on the map
+
+```{r}
+ramen_top_countries=ramen_stars%>%
+  group_by(country)%>%
+  count(country)%>%
+  arrange(desc(nn))
+
+
+ramen_top5=ramen_top_countries%>%
+  filter(country=="Japan" | country== "United States"| country=="Taiwan" | country=="China" | country=="South Korea")%>%
+  mutate(lat= case_when(
+    country=="Japan"~"35.652832",
+    country=="United States"~"37.090240",
+    country=="Taiwan"~"23.697809",
+    country=="China"~"35.861660",
+    TRUE~"35.907757"))%>%
+    mutate(long= case_when(
+      country=="Japan"~"138.252930",
+      country=="United States"~"-95.712891",
+      country=="Taiwan"~"120.960518",
+      country=="China"~"104.195396",
+      TRUE~"127.766922"))%>%
+  mutate(lat=as.numeric(lat),long=as.numeric(long))
+
+```
+Map the countries
+
+```{r}
+leaflet(data = ramen_top5) %>% addTiles() %>%
+  addMarkers(~long, ~lat, label=~country, popup=~(as.character(nn)))
+
+```
