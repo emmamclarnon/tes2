@@ -1,1 +1,2 @@
-# tes2
+# Tidy Tuesday R scripts and things
+A work in progress...
