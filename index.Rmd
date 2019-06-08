@@ -13,5 +13,3 @@ output: html_document
 ### Tidy Tuesday
 
 In an attempt to learn more R skills and pracrice more data visualisations, here are my attempts at Tidy Tuesday.  
-
-[Ramen data](https://github.com/emmamclarnon/tidy_tuesday/ramen_tidy.html)
