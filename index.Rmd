@@ -1,17 +1,11 @@
 ---
-title: "index"
-knit: (function(input_file, encoding) {
-  out_dir <- '';
-  rmarkdown::render(input_file,
- encoding=encoding,
- output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+title: "Tidy Tuesday"
 author: "Emma McLarnon"
 date: "8 June 2019"
-output: html_document
 ---
 
-### Tidy Tuesday
+
 
 In an attempt to learn more R skills and pracrice more data visualisations, here are my attempts at Tidy Tuesday.  
 
-[Ramen](https://emmamclarnon.github.io/tidy_tuesday/ramen_tidy.html)
+# [Ramen](https://emmamclarnon.github.io/tidy_tuesday/ramen_tidy.html)

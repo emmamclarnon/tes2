@@ -1,12 +1,8 @@
-name: "index"
-output_dir: ""
+name: "my-website"
 navbar:
   title: "Tidy Tuesday"
   left:
-  - text: "Home"
-   href: index.html
-  - text: "Ramen"
-   href: ramen_tidy.html
-output:
-  html_document:
- theme: cosmo
+    - text: "Home"
+      href: index.html
+    - text: "Ramen"
+      href: ramen_tidy.html
