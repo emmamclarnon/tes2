@@ -1,14 +1,26 @@
 ---
-title: "Tidy Tuesday"
-author: "Emma McLarnon"
-date: "8 June 2019"
+title: "Tidy Tuesday Homepage" 
 output:
   html_document:
-    df_print: paged
+    css: style.css
 ---
 
+#### {#p }
 
 
-In an attempt to learn more R skills and pracrice more data visualisations, here are my attempts at Tidy Tuesday.  
 
-# [Ramen](https://emmamclarnon.github.io/tidy_tuesday/ramen_tidy.html)
+Welcome to  my Tidy Tuesday homepage!
+
+
+#### {#p2 }
+In an attempt to learn more R skills and pracrice more data visualisations, here are my attempts at Tidy Tuesday.  I've linked them to individual R notebook pages. Each bullet point is a hyperlink.
+
+#### {#p2 }
+
+I started my quest with Ramen rating, but hope to continually add to this.  Watch this space for new additions...
+
+### List of Tidy Tuesday attempts
+
+
+* [Ramen](https://emmamclarnon.github.io/tidy_tuesday/ramen_tidy.html) ![](ramen2png.png)
+
