@@ -5,15 +5,18 @@ output:
     df_print: paged
 ---
 
-Import the data
+### Import the data
 
 ```{r}
 library(dplyr)
 library(leaflet)
 ramen_ratings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-04/ramen_ratings.csv")
 str(ramen_ratings)
+ramen_ratings=ramen_ratings%>%
+  filter(style!="NA", stars!="NA")
 ```
-Filter to 4 stars and above
+
+### Filter to 4 stars and above
 
 ```{r}
 ramen_stars=ramen_ratings%>%
@@ -22,7 +25,7 @@ ramen_stars=ramen_ratings%>%
   summarise(n=n())
 ```
 
-Choose top 5 countries to plot on the map
+### Choose top 5 countries to plot on the map
 
 ```{r}
 ramen_top_countries=ramen_stars%>%
@@ -48,10 +51,24 @@ ramen_top5=ramen_top_countries%>%
   mutate(lat=as.numeric(lat),long=as.numeric(long))
 
 ```
-Map the countries
+
+### Map the countries
 
 ```{r}
 leaflet(data = ramen_top5) %>% addTiles() %>%
   addMarkers(~long, ~lat, label=~country, popup=~(as.character(nn)))
+
+```
+
+### Star rating per style
+```{r}
+library(ggplot2)
+library(forcats)
+ggplot(data = ramen_ratings, 
+       mapping = aes(x = fct_reorder(style, stars, fun=median, .desc=T),                     y=(stars),fill=fct_reorder(style,stars, fun=median, .desc=T))) + 
+  geom_boxplot()+
+  theme_classic()+
+  labs(x = "Ramen Style", y ="Star ratings")+
+  scale_fill_brewer(palette="Dark2",guide = guide_legend(title = "Ramen style"))
 
 ```
